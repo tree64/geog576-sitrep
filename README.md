@@ -1,5 +1,6 @@
 # geog576-sitrep
 UW-Madison M.S. GIS Development
+
 Course: 576 Geospatial Web & Mobile Programming
 Instructor: Randy Sincoular
 Developers: Andrew Sirota & Andrew Winchell
