@@ -10,8 +10,10 @@ Purpose: This tool has the capability of creating weather events at a point loca
 
 Instructions:
 <ol>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>Use Search Widget to look for an existing weather event, incident area, or SITREP report.
+  <li>Use Edit Widget to create a weather event. (If event already exists, skip to step 3)</li>
+  <li>Use Edit Widget to create an incident area tied to a weather event. (If incident area already exists, skip to step 4)</li>
+  <li>Select an existing incedent area from the dropdown and click Generate Report button</li>
+  <li>Download standardized report</li>
 </ol>
   
