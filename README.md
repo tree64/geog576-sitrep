@@ -1,8 +1,8 @@
 # geog576-sitrep
 <strong>UW-Madison M.S. GIS Development</strong><br>
-<b>Course:</b> 576 Geospatial Web & Mobile Programming<br>
-<b>Instructor:</b> Randy Sincoular<br>
-<b>Developers:</b> Andrew Sirota & Andrew Winchell
+<strong>Course:</strong> 576 Geospatial Web & Mobile Programming<br>
+<strong>Instructor:</strong> Randy Sincoular<br>
+<strong>Developers:</strong> Andrew Sirota & Andrew Winchell
 
 Summmary: Situation Report (SITREP) tool for FAA airspace disruptions due to extreme weather events.
 
