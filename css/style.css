@@ -26,7 +26,7 @@ html, body {
 .tool {
     display: inline-grid;
     height: 20vh;
-    width: calc(50vw - 2px);
+    width: calc(20vw - 2px);
     padding: 10px;
     background-color: #353535;
     color: #ffffff;
