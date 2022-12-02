@@ -12,5 +12,23 @@ html, body {
 
 #viewDiv {
     height: 80vh;
+    width: 80vw;
     padding: 50px 0px 0px 0px;
+}
+
+.queryTools {
+    display: inline-block;
+    padding: 50px 0px 0px 0px;
+    width: 20vw;
+    height: 100vh;
+}
+
+.tool {
+    display: inline-grid;
+    height: 20vh;
+    width: calc(50vw - 2px);
+    padding: 10px;
+    background-color: #353535;
+    color: #ffffff;
+    text-align: center;
 }
