@@ -9,3 +9,8 @@ html, body {
     font-size: 16pt;
     font-weight: bold;
 }
+
+#viewDiv {
+    height: 80vh;
+    padding: 50px 0px 0px 0px;
+}
