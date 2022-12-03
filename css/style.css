@@ -57,23 +57,6 @@ html, body {
     padding-top: 50px;
 }
 
-.queryTools {
-    float: left;
-    padding-top: 50px;
-    width: 20vw;
-    height: 100vh;
-}
-
-.tool {
-    display: inline-grid;
-    height: 20vh;
-    width: calc(20vw - 2px);
-    padding: 10px;
-    background-color: #353535;
-    color: #ffffff;
-    text-align: center;
-}
-
 .IWAtools {
     float: right;
     height: 20vh;
