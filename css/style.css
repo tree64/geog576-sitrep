@@ -24,6 +24,11 @@ html, body {
     text-align: center;
 }
 
+.dropdown {
+    font-size: medium;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .viewDiv {
     grid-area: main;
 }
@@ -49,13 +54,6 @@ html, body {
     height: 100vh;
     padding-top: 50px;
 }
-
-/*.IWAtools {
-    float: right;
-    height: 20vh;
-    width: 80vw;
-    padding-top: calc(80vh + 50px);
-}*/
 
 #dropdown-container {
     height: calc(20vh - (50px / 3));
