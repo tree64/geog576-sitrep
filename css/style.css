@@ -16,7 +16,6 @@ html, body {
 
 .qTool {
     display: inline-grid;
-    height: 20vh;
     width: calc(20vw - 2px);
     padding: 10px;
     background-color: #353535;
@@ -32,9 +31,9 @@ html, body {
     grid-area: iwa;
 }
 
-.iTool {
+/*.iTool {
     
-}
+}*/
 
 .grid-container {
     display: grid;
@@ -50,14 +49,7 @@ html, body {
     padding-top: 50px;
 }
 
-/*.viewDiv {
-    float: right;
-    height: 80vh;
-    width: 80vw;
-    padding-top: 50px;
-}
-
-.IWAtools {
+/*.IWAtools {
     float: right;
     height: 20vh;
     width: 80vw;
