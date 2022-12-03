@@ -38,6 +38,8 @@ html, body {
 
 .grid-container {
     display: grid;
+    grid-template-columns: 20vh 20vh 20v 20vh 20vh;
+    grid-template-rows: 20vw 20vw 20vw 20vw 20vw;
     grid:
     'query main main main main'
     'query main main main main'
