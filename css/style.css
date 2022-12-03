@@ -25,8 +25,9 @@ html, body {
 }
 
 .dropdown {
-    font-size: medium;
-    font-family: 'Courier New', Courier, monospace;
+    --calcite-select-font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 30%;
 }
 
 .viewDiv {
