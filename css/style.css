@@ -12,6 +12,7 @@ html, body {
 
 .queryTools {
     grid-area: query;
+    height: calc(100vh - 50px);
 }
 
 .qTool {
