@@ -58,15 +58,15 @@ html, body {
 }*/
 
 #dropdown-container {
-    height: 20vh;
+    height: calc(20vh - (50px / 3));
 }
 
 #summary-section {
-    height: 60vh;
+    height: calc(60vh - (50px / 3));
     width: calc(20vw - 2px);
 }
 
 #generate-report {
-    height: 20vh;
+    height: calc(20vh - (50px / 3));
     width: calc(20vw - 2px);
 }
