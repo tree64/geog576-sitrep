@@ -11,7 +11,7 @@ html, body {
 }
 
 #viewDiv {
-    float: left;
+    float: right;
     height: 80vh;
     width: 80vw;
     padding-top: 50px;
@@ -35,7 +35,7 @@ html, body {
 }
 
 .IWAtools {
-    float: left;
+    float: right;
     height: 20vh;
     width: 80vw;
     padding-top: calc(80vh + 50px);
