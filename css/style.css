@@ -10,9 +10,31 @@ html, body {
     font-weight: bold;
 }
 
-.queryTools {grid-area: query;}
-.viewDiv {grid-area: main;}
-.IWAtools {grid-area: iwa;}
+.queryTools {
+    grid-area: query;
+}
+
+.qTool {
+    display: inline-grid;
+    height: 20vh;
+    width: calc(20vw - 2px);
+    padding: 10px;
+    background-color: #353535;
+    color: #ffffff;
+    text-align: center;
+}
+
+.viewDiv {
+    grid-area: main;
+}
+
+.IWAtools {
+    grid-area: iwa;
+}
+
+.iTool {
+    
+}
 
 .grid-container {
     display: grid;
@@ -23,9 +45,11 @@ html, body {
     'query main main main main'
     'query iwa iwa iwa iwa';
     grid-gap: 0px;
+    height: 100vh;
+    padding-top: 50px;
 }
 
-/*#viewDiv {
+/*.viewDiv {
     float: right;
     height: 80vh;
     width: 80vw;
