@@ -18,7 +18,6 @@ html, body {
 }
 
 .queryTools {
-    display: inline-block;
     float: left;
     padding-top: 50px;
     width: 20vw;
