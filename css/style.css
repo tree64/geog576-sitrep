@@ -44,7 +44,6 @@ html, body {
     'query main main main main'
     'query main main main main'
     'query iwa iwa iwa iwa';
-    grid-template-rows: 20vh 20vh 20v 20vh 20vh;
     grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
     grid-gap: 0px;
     height: 100vh;
