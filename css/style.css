@@ -10,7 +10,22 @@ html, body {
     font-weight: bold;
 }
 
-#viewDiv {
+.queryTools {grid-area: query;}
+.viewDiv {grid-area: main;}
+.IWAtools {grid-area: iwa;}
+
+.grid-container {
+    display: grid;
+    grid:
+    'query main main main main'
+    'query main main main main'
+    'query main main main main'
+    'query main main main main'
+    'query iwa iwa iwa iwa';
+    grid-gap: 0px;
+}
+
+/*#viewDiv {
     float: right;
     height: 80vh;
     width: 80vw;
@@ -39,4 +54,4 @@ html, body {
     height: 20vh;
     width: 80vw;
     padding-top: calc(80vh + 50px);
-}
+}*/
