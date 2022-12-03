@@ -58,7 +58,6 @@ html, body {
 
 #dropdown-container {
     height: 20vh;
-    width: calc(20vw - 2px);
 }
 
 #summary-section {
