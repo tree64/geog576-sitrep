@@ -11,6 +11,7 @@ html, body {
 
 #dropdown-container {
     height: calc(30vh - (50px / 3));
+    overflow: auto;
 }
 
 .dropdown {
