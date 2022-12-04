@@ -37,7 +37,7 @@ const view = new MapView({
     container: "viewDiv",
     map: map,
     zoom: 4.5,
-    center: [-102, 43] 
+    center: [-100, 41] 
 });
 
 });
