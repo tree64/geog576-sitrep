@@ -12,6 +12,9 @@ html, body {
 #dropdown-container {
     height: calc(30vh - (50px / 3));
     overflow: auto;
+    background-color: #353535;
+    color: #ffffff;
+    text-align: center;
 }
 
 .dropdown {
@@ -37,9 +40,6 @@ html, body {
 .qTool {
     width: calc(20vw - 2px);
     padding: 10px;
-    background-color: #353535;
-    color: #ffffff;
-    text-align: center;
 }
 
 .viewDiv {
