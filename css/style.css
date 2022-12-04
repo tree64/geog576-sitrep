@@ -3,11 +3,21 @@ html, body {
     margin: 0;
 }
 
-#dropdownTitle {
-    text-align: center;
-    padding: 5px;
+#dropdown-header {
+    text-align: left;
     font-size: 16pt;
     font-weight: bold;
+}
+
+#dropdown-container {
+    height: calc(30vh - (50px / 3));
+}
+
+.dropdown {
+    --calcite-select-font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 30%;
+    display: inline;
 }
 
 .queryTools {
@@ -21,13 +31,6 @@ html, body {
     background-color: #353535;
     color: #ffffff;
     text-align: center;
-}
-
-.dropdown {
-    --calcite-select-font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    height: 30%;
-    display: inline;
 }
 
 .viewDiv {
@@ -50,10 +53,6 @@ html, body {
     grid-gap: 0px;
     height: 100vh;
     padding-top: 50px;
-}
-
-#dropdown-container {
-    height: calc(30vh - (50px / 3));
 }
 
 #summary-section {
