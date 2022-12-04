@@ -46,9 +46,26 @@ eventLayer.renderer = {
     symbol: eventSymbol
 };
 
+const facilityLayer = new FeatureLayer({
+    id: "facilities",
+    url: "",
+    minScale: 250000
+});
+
+let facilitySymbol = {
+    type: "simple-point",
+    color: "green",
+    size: 5
+};
+
+facilityLayer.renderer = {
+    type: "simple",
+    symbol: facilitySymbol
+};
+
 const map = new Map({
     basemap: "topo-vector",
-    layers: [eventLayer]
+    layers: [eventLayer, facilityLayer]
 });
 
 const view = new MapView({
