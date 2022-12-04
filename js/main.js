@@ -31,8 +31,7 @@ esriConfig.apiKey = "AAPK81762376d6974634a978fa72c12fdfbdqcwchnbMurlNeJgk4ov0WxR
 
 const eventLayer = new FeatureLayer({
     id: "weather_events",
-    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SITREP_DATA/FeatureServer/0",
-    minScale: 250000
+    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SITREP_DATA/FeatureServer/0"
 });
 
 let eventSymbol = {
@@ -48,8 +47,7 @@ eventLayer.renderer = {
 
 const facilityLayer = new FeatureLayer({
     id: "facilities",
-    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SITREP_DATA/FeatureServer/1",
-    minScale: 250000
+    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SITREP_DATA/FeatureServer/1"
 });
 
 let facilitySymbol = {
@@ -63,13 +61,18 @@ facilityLayer.renderer = {
     symbol: facilitySymbol
 };
 
+//construct a new web map using basic topographic basemap
+//add weather event and facility layers by default
 const map = new Map({
     basemap: "topo-vector",
     layers: [eventLayer, facilityLayer]
 });
 
+//construct new map view
 const view = new MapView({
+    //placed in viewDiv html
     container: "viewDiv",
+    //use the web map as the map for the view
     map: map,
     zoom: 4.5,
     center: [-100, 41] 
