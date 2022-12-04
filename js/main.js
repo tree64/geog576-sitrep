@@ -36,7 +36,7 @@ const eventLayer = new FeatureLayer({
 });
 
 let eventSymbol = {
-    type: "simple-point",
+    type: "simple-marker",
     color: "red",
     size: 4
 };
@@ -53,7 +53,7 @@ const facilityLayer = new FeatureLayer({
 });
 
 let facilitySymbol = {
-    type: "simple-point",
+    type: "simple-marker",
     color: "green",
     size: 5
 };
