@@ -21,6 +21,14 @@ html, body {
     display: inline;
 }
 
+#weather-dropdown {
+    height: 50%;
+}
+
+#iwa-dropdown {
+    height: 50%;
+}
+
 .queryTools {
     grid-area: query;
     height: calc(100vh - 50px);
