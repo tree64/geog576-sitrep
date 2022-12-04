@@ -12,9 +12,6 @@ html, body {
 #dropdown-container {
     height: calc(30vh - (50px / 3));
     overflow: auto;
-    background-color: #353535;
-    color: #ffffff;
-    text-align: center;
 }
 
 .dropdown {
@@ -35,6 +32,9 @@ html, body {
 .queryTools {
     grid-area: query;
     height: calc(100vh - 50px);
+    background-color: #353535;
+    color: #ffffff;
+    text-align: center;
 }
 
 .qTool {
@@ -48,6 +48,9 @@ html, body {
 
 .IWAtools {
     grid-area: iwa;
+    background-color: #353535;
+    color: #ffffff;
+    text-align: center;
 }
 
 .grid-container {
