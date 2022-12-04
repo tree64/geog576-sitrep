@@ -42,7 +42,7 @@ html, body {
     padding: 10px;
 }
 
-#viewDiv {
+.mapArea {
     grid-area: main;
 }
 
