@@ -46,6 +46,10 @@ html, body {
     grid-area: main;
 }
 
+#viewDiv {
+    position: relative;
+}
+
 .IWAtools {
     grid-area: iwa;
     background-color: #353535;
