@@ -27,7 +27,7 @@ html, body {
     --calcite-select-font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
     height: 30%;
-    display: block;
+    display: inline;
 }
 
 .viewDiv {
@@ -54,7 +54,6 @@ html, body {
 
 #dropdown-container {
     height: calc(30vh - (50px / 3));
-    display: inline;
 }
 
 #summary-section {
