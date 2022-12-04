@@ -16,7 +16,6 @@ html, body {
 }
 
 .qTool {
-    display: inline-grid;
     width: calc(20vw - 2px);
     padding: 10px;
     background-color: #353535;
@@ -28,6 +27,7 @@ html, body {
     --calcite-select-font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
     height: 30%;
+    display: block;
 }
 
 .viewDiv {
@@ -37,10 +37,6 @@ html, body {
 .IWAtools {
     grid-area: iwa;
 }
-
-/*.iTool {
-    
-}*/
 
 .grid-container {
     display: grid;
