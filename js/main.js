@@ -78,4 +78,9 @@ const view = new MapView({
     center: [-100, 41] 
 });
 
+//on start-up, populate weather events dropdown
+$("weather-default").after(
+    '<calcite-option>Test Event</calcite-option>'
+)
+
 });
