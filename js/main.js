@@ -80,7 +80,7 @@ const view = new MapView({
 
 //on start-up, populate weather events dropdown
 $(document).ready(() => {
-    $("weather-default").after(
+    $("#weather-default").after(
         '<calcite-option>Test Event</calcite-option>'
     );
 });
