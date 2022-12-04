@@ -3,7 +3,7 @@ html, body {
     margin: 0;
 }
 
-.dropdown-header {
+.dd-header {
     text-align: left;
     font-size: 16pt;
     font-weight: bold;
