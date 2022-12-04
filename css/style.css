@@ -16,6 +16,7 @@ html, body {
 }
 
 .qTool {
+    display: inline;
     width: calc(20vw - 2px);
     padding: 10px;
     background-color: #353535;
