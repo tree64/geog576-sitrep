@@ -57,7 +57,7 @@ html, body {
 }
 
 #dropdown-container {
-    height: calc(20vh - (50px / 3));
+    height: calc(30vh - (50px / 3));
 }
 
 #summary-section {
@@ -66,6 +66,6 @@ html, body {
 }
 
 #generate-report {
-    height: calc(20vh - (50px / 3));
+    height: calc(10vh - (50px / 3));
     width: calc(20vw - 2px);
 }
