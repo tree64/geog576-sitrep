@@ -79,8 +79,10 @@ const view = new MapView({
 });
 
 //on start-up, populate weather events dropdown
-$("weather-default").after(
-    '<calcite-option>Test Event</calcite-option>'
-)
+$(document).ready(() => {
+    $("weather-default").after(
+        '<calcite-option>Test Event</calcite-option>'
+    );
+});
 
 });
