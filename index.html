@@ -74,16 +74,16 @@
             <!--Start Query Section-->
             <div class="queryTools">
                 <div class="qTool" id="dropdown-container">
-                    <div id="weather-dropdown">
+                    <div id="weather-container">
                         <p class="section-header">Search database for existing weather events:</p>
-                        <calcite-select class="dropdown">
+                        <calcite-select class="dropdown" id="weather-dropdown">
                             <calcite-option selected class="default-dropdown" id="weather-default">Select Weather Events</calcite-option>
                         </calcite-select>
                     </div>
-                    <div id="iwa-dropdown">
+                    <div id="iwa-container">
                         <p class="section-header">Select an Incident Watch Area for this event:</p>
-                        <calcite-select class="dropdown">
-                            <calcite-option selected class="default-dropdown">Select Watch Area</calcite-option>
+                        <calcite-select class="dropdown" id="iwa-dropdown">
+                            <calcite-option selected class="default-dropdown" id="iwa-default">Select Watch Area</calcite-option>
                         </calcite-select>
                     </div>
                 </div>

@@ -80,9 +80,26 @@ const view = new MapView({
 
 //on start-up, populate weather events dropdown
 $(document).ready(() => {
-    $("#weather-default").after(
-        '<calcite-option>Test Event</calcite-option>'
-    );
+    populateDropdown("event")
 });
 
+function populateDropdown(dropdown) {
+    //determine which dropdown to populate
+    if (dropdown == "event") {
+        //clear weather dropdown options
+        $("#weather-container").empty();
+        //append default weather option
+        $("#weather-container").after(
+            '<calcite-option selected class="default-dropdown" id="weather-default">Select Weather Events</calcite-option>'
+        );
+        //append each of the existing weather events as a new option
+        $("#weather-default").after(
+            '<calcite-option>Test Event</calcite-option>'
+        );
+    } else if (dropdown == "iwa") {
+        $("#iwa-default").after(
+            '<calcite-option>Test IWA</calcite-option>'
+        )
+    };
+}
 });

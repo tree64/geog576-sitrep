@@ -21,11 +21,11 @@ html, body {
     display: inline;
 }
 
-#weather-dropdown {
+#weather-container {
     height: 50%;
 }
 
-#iwa-dropdown {
+#iwa-container {
     height: 50%;
 }
 
