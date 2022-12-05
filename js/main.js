@@ -85,7 +85,7 @@ $(document).ready(() => {
 
 $("weather-dropdown").addEventListener(
     "calciteSelectChange",
-    populateDropdown("iwa", $("weather-dropdown").selectedItems[0].value)
+    populateDropdown("iwa")
 );
 
 function populateDropdown(dropdown, event) {
