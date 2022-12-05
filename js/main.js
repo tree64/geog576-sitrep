@@ -87,11 +87,7 @@ function populateDropdown(dropdown) {
     //determine which dropdown to populate
     if (dropdown == "event") {
         //clear weather dropdown options
-        $("#weather-container").empty();
-        //append default weather option
-        $("#weather-container").after(
-            '<calcite-option selected class="default-dropdown" id="weather-default">Select Weather Events</calcite-option>'
-        );
+        $("#weather-container option:not(:first)").remove();
         //append each of the existing weather events as a new option
         $("#weather-default").after(
             '<calcite-option>Test Event</calcite-option>'
