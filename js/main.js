@@ -83,11 +83,12 @@ $(document).ready(() => {
     populateDropdown("event")
 });
 
-$("weather-dropdown").calciteSelectChange(() => {
-    populateDropdown("iwa");
-});
+$("weather-dropdown").addEventListener(
+    "calciteSelectChange",
+    populateDropdown("iwa", $("weather-dropdown").selectedItems[0].value)
+);
 
-function populateDropdown(dropdown) {
+function populateDropdown(dropdown, event) {
     //determine which dropdown to populate
     if (dropdown == "event") {
         //clear weather dropdown options except for the default
