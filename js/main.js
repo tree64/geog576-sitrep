@@ -83,16 +83,25 @@ $(document).ready(() => {
     populateDropdown("event")
 });
 
+$("weather-dropdown").calciteSelectChange(() => {
+    populateDropdown("iwa");
+});
+
 function populateDropdown(dropdown) {
     //determine which dropdown to populate
     if (dropdown == "event") {
-        //clear weather dropdown options
+        //clear weather dropdown options except for the default
         $("#weather-container option:not(:first)").remove();
+
         //append each of the existing weather events as a new option
         $("#weather-default").after(
             '<calcite-option>Test Event</calcite-option>'
         );
     } else if (dropdown == "iwa") {
+        //clear iwa dropdown options except for the default
+        $("#iwa-container option:not(:first)").remove();
+
+        //append each of the existing iwa's for the selected weather event
         $("#iwa-default").after(
             '<calcite-option>Test IWA</calcite-option>'
         )
