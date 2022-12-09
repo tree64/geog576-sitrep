@@ -50,13 +50,6 @@ html, body {
     position: relative;
 }
 
-.IWAtools {
-    grid-area: iwa;
-    background-color: #353535;
-    color: #ffffff;
-    text-align: center;
-}
-
 .grid-container {
     display: grid;
     grid:
@@ -64,7 +57,7 @@ html, body {
     'query main main main main'
     'query main main main main'
     'query main main main main'
-    'query iwa iwa iwa iwa';
+    'query main main main main';
     grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
     grid-gap: 0px;
     height: 100vh;
@@ -86,4 +79,12 @@ html, body {
     height: 100%;
     font-size: 1.5vw;
     white-space: break-spaces;
+}
+
+.nav-item {
+    font-size: 18px;
+}
+
+.nav-link {
+    color: wheat;
 }
