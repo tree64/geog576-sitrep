@@ -88,6 +88,7 @@ require([
     });
 
     //add the button for the point tool
+    view.ui.add("point-button", "top-left");
     view.ui.add("polygon-button", "top-left");
 
     // create a new instance of draw
@@ -95,7 +96,79 @@ require([
         view: view
     });
 
-    //draw polyline button
+    //insert point button
+    $("#point-button").on("click", () => {
+        enableInsertPoint(draw, view);
+    })
+
+    // Cancel drawing when user presses "ESC" key.
+    $(document).keydown((k) => {
+        if (k.keyCode == 27) {
+            draw.reset();
+            view.graphics.removeAll();
+        }
+    });
+
+    function enableInsertPoint(draw, view) {
+        const action = draw.create("point");
+
+        // PointDrawAction.cursor-update
+        // Give a visual feedback to users as they move the pointer over the view
+        action.on("cursor-update", (e) => {
+            followPointGraphic(e.coordinates);
+        });
+
+        // PointDrawAction.draw-complete
+        // Create a point when user clicks on the view or presses "C" key.
+        action.on("draw-complete", (e) => {
+            createPointGraphic(e.coordinates);
+        });
+    }
+
+    function followPointGraphic(coordinates){
+        view.graphics.removeAll();
+        let point = {
+            type: "point", // autocasts as /Point
+            x: coordinates[0],
+            y: coordinates[1],
+            spatialReference: view.spatialReference
+        };
+
+        let graphic = new Graphic({
+            geometry: point,
+            symbol: {
+                type: "picture-marker", // autocasts as SimpleMarkerSymbol
+                url: "img/dmg_marker.png",
+                width: "20px",
+                height: "20px"
+            }
+        });
+        view.graphics.add(graphic);
+    }
+
+    function createPointGraphic(coordinates){
+        view.graphics.removeAll();
+        let point = {
+            type: "point", // autocasts as /Point
+            x: coordinates[0],
+            y: coordinates[1],
+            spatialReference: view.spatialReference
+        };
+
+        let graphic = new Graphic({
+            geometry: point,
+            symbol: {
+                type: "picture-marker", // autocasts as SimpleMarkerSymbol
+                url: "img/dmg_marker.png",
+                width: "20px",
+                height: "20px"
+            }
+        });
+        view.graphics.add(graphic);
+        console.log(graphic.geometry.latitude, graphic.geometry.longitude)
+    }
+
+    //draw polygon button
     $("#polygon-button").on("click", () => {
         enableCreatePolygon(draw, view)
     });
@@ -105,23 +178,23 @@ require([
         const action = draw.create("polygon");
 
         action.on("vertex-add", (e) => {
-        createPolygonGraphic(e.vertices)
+            drawPolygonGraphic(e.vertices)
         });
 
         action.on("vertex-remove", (e) => {
-            createPolygonGraphic(e.vertices)
+            drawPolygonGraphic(e.vertices)
         });
 
         action.on("cursor-update", (e) => {
-            createPolygonGraphic(e.vertices)
+            drawPolygonGraphic(e.vertices)
         });
 
         action.on("draw-complete", (e) => {
-            createPolygonGraphic(e.vertices)
+            completePolygonGraphic(e.vertices)
         });
     };
 
-    function createPolygonGraphic(vertices) {
+    function drawPolygonGraphic(vertices) {
         view.graphics.removeAll();
         let polygon = {
             type: "polygon",
@@ -137,8 +210,26 @@ require([
                 width: 1.5
             }
         });
-
         view.graphics.add(graphic);
+    }
+
+    function completePolygonGraphic(vertices) {
+        let polygon = {
+            type: "polygon",
+            rings: vertices,
+            spatialReference: view.spatialReference
+        };
+
+        let graphic = new Graphic({
+            geometry: polygon,
+            symbol: {
+                type: "simple-line",
+                color: "red",
+                width: 1.5
+            }
+        });
+        view.graphics.add(graphic);
+        console.log(graphic);
     }
 
     //on start-up, populate weather events dropdown
@@ -152,20 +243,25 @@ require([
     });
 
     function tabContentResize() {
-        let tabsHeight = $(".nav.nav-tabs").css("height");
-        let height = "calc(100vh - 50px - " + tabsHeight + ")"
-        $("#tabContent").css("height", height);
-        $(".tab-pane").css("height", height);
+        //get height of tab panels
+        let tabsHeight = $("#tool-tabs").css("height");
+        //calculate height of tab panels and content
+        let heightContent = "calc(100vh - 50px - " + tabsHeight + ")"
+        let heightPane = "calc(100vh - 60px - " + tabsHeight + ")"
+        //set heights of tab panels and content
+        $("#tabContent").css("height", heightContent);
+        $(".tab-pane").css("height", heightPane);
     }
 
     $('#tool-tabs a').on('click', function (e) {
         e.preventDefault()
         $(this).tab('show')
-    })
+    });
 
-    $("#weather-dropdown").on(
-        "calciteSelectChange",
-        populateDropdown("iwa")
+    $("#weather-dropdown").on("calciteSelectChange", (e) => {
+            populateDropdown("iwa");
+            eventSelected(e.target.value);
+        }
     );
 
     function populateDropdown(dropdown, event) {
@@ -176,6 +272,7 @@ require([
 
             //append each of the existing weather events as a new option
             $("#weather-default").after(
+                '<calcite-option>New Event</calcite-option>' +
                 '<calcite-option>Test Event</calcite-option>'
             );
         } else if (dropdown == "iwa") {
@@ -184,8 +281,37 @@ require([
 
             //append each of the existing iwa's for the selected weather event
             $("#iwa-default").after(
-                '<calcite-option>Test IWA</calcite-option>'
+                '<calcite-option>New IWA</calcite-option>'
             )
         };
+    }
+
+    function eventSelected(selection) {
+        if (selection == "New Event") {
+            $("#weather-form").css("display", "block");
+            clearForms();
+        }
+        else if (selection == "Select Weather Event") {
+            $("#weather-form").css("display", "none");
+            $("#iwa-form").css("display", "none");
+            clearForms();
+        }
+        else {
+            $("#iwa-tab").tab("show");
+            $("#iwa-form").css("display", "block")
+            $("#iwa").prepend(
+                "<p id='event-label'>Weather Event: " + selection + "</p>"
+            );
+        };
+    }
+
+    function clearForms() {
+        $("#weather-form").closest('form').find("input[type=text], textarea").val("");
+        $("#weather-form").closest('form').find("input[type=date], textarea").val("");
+        $("#disaster-type").val("");
+        $("#iwa-form").closest('form').find("input[type=text], textarea").val("");
+        $("#iwa-form").closest('form').find("input[type=date], textarea").val("");
+        $("p").remove("#event-label");
+
     }
 });

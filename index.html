@@ -80,7 +80,7 @@
                 <a class="nav-link active" href="#weather-event">Weather Event</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#iwa">IWA</a>
+                <a class="nav-link" href="#iwa" id="iwa-tab">IWA</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#report">Report</a>
@@ -91,13 +91,41 @@
         <div class="tab-content" id="tabContent">
             <div role="tabpanel" class="tab-pane active" id="weather-event">
                 <calcite-select class="dropdown" id="weather-dropdown">
-                    <calcite-option selected class="default-dropdown" id="weather-default">Select Weather Events</calcite-option>
+                    <calcite-option selected class="default-dropdown" id="weather-default">Select Weather Event</calcite-option>
                 </calcite-select>
+
+                <form id="weather-form">
+                    <div>
+                        <label>Name:&nbsp</label><input type="text" placeholder="Weather System Name" name="system-name" class="form-input">
+                        <label>Date:&nbsp</label><input type="date" id="weather-date" name="weather-date" class="form-input">
+                        <label>Weather Type:</label>
+                        <select name="disaster-type" id="disaster-type" class="form-input">
+                            <option value="">Choose the weather type</option>
+                            <option value="hurricane">Blizzard</option>
+                            <option value="flood">Flood</option>
+                            <option value="wildfire">Wildfire</option>
+                            <option value="earthquake">Earthquake</option>
+                            <option value="tornado">Tornado</option>
+                            <option value="hurricane">Hurricane</option>
+                            <option value="other">other</option>
+                        </select>
+                        <label>Location:&nbsp</label><input type="text" id="weather-loc" name="weather-loc" class="form-input">
+                    </div>
+                </form>
+
             </div>
             <div role="tabpanel" class="tab-pane" id="iwa">
                 <calcite-select class="dropdown" id="iwa-dropdown">
                     <calcite-option selected class="default-dropdown" id="iwa-default">Select Watch Area</calcite-option>
                 </calcite-select>
+
+                <form id="iwa-form">
+                    <div>
+                        <label>ID:&nbsp</label><input type="text" placeholder="IWA ID" name="iwa-id" class="form-input">
+                        <label>Date:&nbsp</label><input type="date" id="iwa-date" name="iwa-date" class="form-input">
+                        <label>Location:&nbsp</label><input type="text" id="iwa-loc" name="iwa-loc" class="form-input">
+                    </div>
+                </form>
             </div>
             <div role="tabpanel" class="tab-pane" id="report">
                 <button type="button" class="btn btn-primary" id="gen-button" disabled>Generate Report</button>
@@ -109,6 +137,11 @@
     <!--Start Map-->
     <div class="mapArea">
         <div id="viewDiv">
+            <div id="point-button"
+                 class="esri-widget esri-widget--button esri-interactive"
+                 title="Add Point">
+                <calcite-icon icon="point" scale="m"></calcite-icon>
+            </div>
             <div id="polygon-button"
                  class="esri-widget esri-widget--button esri-interactive"
                  title="Draw polygon">

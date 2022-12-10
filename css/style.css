@@ -88,3 +88,32 @@ html, body {
 .nav-link {
     color: wheat;
 }
+
+#tabContent {
+    padding-top: 10px;
+}
+
+#disaster-type {
+    --calcite-select-font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+
+}
+
+#weather-form {
+    display: none;
+    text-align: left;
+}
+
+.form-input {
+    width: 100%;
+    color: black;
+    margin-bottom: 2vh;
+}
+
+#event-label {
+    font-weight: bold;
+    --calcite-select-font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
