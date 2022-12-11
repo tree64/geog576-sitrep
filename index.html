@@ -77,29 +77,31 @@
         <!--Tab List-->
         <ul class="nav nav-tabs-justified" id="tool-tabs">
             <li class="nav-item">
-                <a class="nav-link active" href="#weather-event">Weather Event</a>
+                <a class="nav-link active" href="#weather-event">1. Weather Event</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#iwa" id="iwa-tab">IWA</a>
+            <li class="nav-item disabled" id="iwa-list-item">
+                <a class="nav-link" href="#iwa" id="iwa-tab">2. IWA</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#report">Report</a>
+            <li class="nav-item disabled"id="report-list-item">
+                <a class="nav-link" href="#report" id="report-tab">3. Report</a>
             </li>
         </ul>
 
         <!--Tab Content-->
         <div class="tab-content" id="tabContent">
             <div role="tabpanel" class="tab-pane active" id="weather-event">
-                <calcite-select class="dropdown" id="weather-dropdown">
-                    <calcite-option selected class="default-dropdown" id="weather-default">Select Weather Event</calcite-option>
-                </calcite-select>
+                <div class="main-dropdown">
+                    <calcite-select class="dropdown" id="weather-dropdown">
+                        <calcite-option selected class="default-dropdown" id="weather-default">Select Weather Event</calcite-option>
+                    </calcite-select>
+                </div>
 
                 <form id="weather-form">
                     <div>
-                        <label>Name:&nbsp</label><input type="text" placeholder="Weather System Name" name="system-name" class="form-input">
-                        <label>Date:&nbsp</label><input type="date" id="weather-date" name="weather-date" class="form-input">
+                        <label>Name:&nbsp</label><input type="text" placeholder="Weather System Name" name="system-name" class="form-input" required>
+                        <label>Date:&nbsp</label><input type="date" min="2022-01-01" id="weather-date" name="weather-date" class="form-input" required>
                         <label>Weather Type:</label>
-                        <select name="disaster-type" id="disaster-type" class="form-input">
+                        <select name="disaster-type" id="disaster-type" class="form-input" required>
                             <option value="">Choose the weather type</option>
                             <option value="hurricane">Blizzard</option>
                             <option value="flood">Flood</option>
@@ -109,22 +111,32 @@
                             <option value="hurricane">Hurricane</option>
                             <option value="other">other</option>
                         </select>
-                        <label>Location:&nbsp</label><input type="text" id="weather-loc" name="weather-loc" class="form-input">
+                        <label>Location:&nbsp</label><input type="text" id="weather-loc" name="weather-loc" class="form-input" disabled required>
+                        <label>Submitter:&nbsp</label><input type="text" placeholder="Your Name" id="weather-submitter" name="weather-submitter" class="form-input" required>
                     </div>
+                    <button type="submit" class="btn btn-default" id="event-submit-btn" disabled>
+                        <span class="glyphicon glyphicon-plus"></span> Place Event
+                    </button>
                 </form>
 
             </div>
             <div role="tabpanel" class="tab-pane" id="iwa">
-                <calcite-select class="dropdown" id="iwa-dropdown">
-                    <calcite-option selected class="default-dropdown" id="iwa-default">Select Watch Area</calcite-option>
-                </calcite-select>
+                <div class="main-dropdown">
+                    <calcite-select class="dropdown" id="iwa-dropdown">
+                        <calcite-option selected class="default-dropdown" id="iwa-default">Select Watch Area</calcite-option>
+                    </calcite-select>
+                </div>
 
                 <form id="iwa-form">
                     <div>
-                        <label>ID:&nbsp</label><input type="text" placeholder="IWA ID" name="iwa-id" class="form-input">
-                        <label>Date:&nbsp</label><input type="date" id="iwa-date" name="iwa-date" class="form-input">
-                        <label>Location:&nbsp</label><input type="text" id="iwa-loc" name="iwa-loc" class="form-input">
+                        <label>ID:&nbsp</label><input type="text" placeholder="IWA ID" name="iwa-id" class="form-input" required>
+                        <label>Date:&nbsp</label><input type="date" id="iwa-date" name="iwa-date" class="form-input" required>
+                        <label>Location:&nbsp</label><input type="text" id="iwa-loc" name="iwa-loc" class="form-input" required>
+                        <label>Submitter:&nbsp</label><input type="text" placeholder="Your Name" id="iwa-submitter" name="iwa-submitter" class="form-input" required>
                     </div>
+                    <button type="submit" class="btn btn-default" id="iwa-submit-btn">
+                        <span class="glyphicon glyphicon-plus"></span> Draw IWA
+                    </button>
                 </form>
             </div>
             <div role="tabpanel" class="tab-pane" id="report">
@@ -137,10 +149,10 @@
     <!--Start Map-->
     <div class="mapArea">
         <div id="viewDiv">
-            <div id="point-button"
-                 class="esri-widget esri-widget--button esri-interactive"
-                 title="Add Point">
-                <calcite-icon icon="point" scale="m"></calcite-icon>
+            <div id='point-button'
+                 class='esri-widget esri-widget--button esri-interactive'
+                 title='Add Point'>
+                <calcite-icon icon='point' scale='m'></calcite-icon>
             </div>
             <div id="polygon-button"
                  class="esri-widget esri-widget--button esri-interactive"

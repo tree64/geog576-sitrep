@@ -87,16 +87,15 @@ require([
         center: [-100, 41]
     });
 
-    //add the button for the point tool
-    view.ui.add("point-button", "top-left");
-    view.ui.add("polygon-button", "top-left");
-
     // create a new instance of draw
     let draw = new Draw({
         view: view
     });
+    view.ui.add("point-button", "top-left");
+    $("#point-button").css("display", "none");
+    view.ui.add("polygon-button", "top-left");
+    $("#polygon-button").css("display", "none");
 
-    //insert point button
     $("#point-button").on("click", () => {
         enableInsertPoint(draw, view);
     })
@@ -104,8 +103,15 @@ require([
     // Cancel drawing when user presses "ESC" key.
     $(document).keydown((k) => {
         if (k.keyCode == 27) {
+            //cancel drawing point
             draw.reset();
+
+            //remove any remaining graphics
             view.graphics.removeAll();
+
+            //clear location geometry from forms
+            $("#weather-loc").val("");
+            $("#iwa-loc").val("");
         }
     });
 
@@ -165,35 +171,43 @@ require([
             }
         });
         view.graphics.add(graphic);
-        console.log(graphic.geometry.latitude, graphic.geometry.longitude)
+
+        addPointGeom(graphic.geometry.longitude, graphic.geometry.latitude);
     }
 
-    //draw polygon button
+    function addPointGeom(x,y) {
+        $("#weather-loc").val(x + ", " + y);
+        $("#event-submit-btn").prop("disabled", false);
+    }
+
+    //When the polygon widget is clicked, call the polygon drawing function
     $("#polygon-button").on("click", () => {
         enableCreatePolygon(draw, view)
     });
 
+    //Start listening for events to draw a polygon
     function enableCreatePolygon(draw, view) {
-
+        //create a polygon drawing action
         const action = draw.create("polygon");
-
+        //listen for the vertex-add action
         action.on("vertex-add", (e) => {
             drawPolygonGraphic(e.vertices)
         });
-
+        //listen for the vertex-remove action
         action.on("vertex-remove", (e) => {
             drawPolygonGraphic(e.vertices)
         });
-
+        //listen for the cursor-update action
         action.on("cursor-update", (e) => {
             drawPolygonGraphic(e.vertices)
         });
-
+        //listen for the draw-complete action
         action.on("draw-complete", (e) => {
             completePolygonGraphic(e.vertices)
         });
     };
 
+    //Update the polygon as drawing actions occur
     function drawPolygonGraphic(vertices) {
         view.graphics.removeAll();
         let polygon = {
@@ -213,6 +227,7 @@ require([
         view.graphics.add(graphic);
     }
 
+    //Called when the polygon is finished being drawn
     function completePolygonGraphic(vertices) {
         let polygon = {
             type: "polygon",
@@ -238,10 +253,12 @@ require([
         tabContentResize();
     });
 
+    //on window resize, call the function to resize the tab contents
     $(window).resize(function() {
         tabContentResize();
     });
 
+    //update the size of the tab content to keep layout dynamic
     function tabContentResize() {
         //get height of tab panels
         let tabsHeight = $("#tool-tabs").css("height");
@@ -253,22 +270,34 @@ require([
         $(".tab-pane").css("height", heightPane);
     }
 
+    //switch the tab panel to the selected tab
     $('#tool-tabs a').on('click', function (e) {
         e.preventDefault()
         $(this).tab('show')
     });
 
+    //listen for the selection on the weather event dropdown
     $("#weather-dropdown").on("calciteSelectChange", (e) => {
+            //call the populateDropdown function with the iwa option
             populateDropdown("iwa");
+            //send the selected weather event to the eventSelected function
             eventSelected(e.target.value);
         }
     );
 
+    //listen for the selection on the iwa dropdown
+    $("#iwa-dropdown").on("calciteSelectChange", (e) => {
+            //send the selected iwa to the iwaSelected function
+            iwaSelected(e.target.value);
+        }
+    );
+
+    //When called, populates the dropdown with default values and existing values from database
     function populateDropdown(dropdown, event) {
         //determine which dropdown to populate
         if (dropdown == "event") {
             //clear weather dropdown options except for the default
-            $("#weather-container option:not(:first)").remove();
+            $("#weather-dropdown calcite-option:not(:first)").remove();
 
             //append each of the existing weather events as a new option
             $("#weather-default").after(
@@ -277,41 +306,79 @@ require([
             );
         } else if (dropdown == "iwa") {
             //clear iwa dropdown options except for the default
-            $("#iwa-container option:not(:first)").remove();
+            $("#iwa-dropdown calcite-option:not(:first)").remove();
 
             //append each of the existing iwa's for the selected weather event
             $("#iwa-default").after(
-                '<calcite-option>New IWA</calcite-option>'
+                '<calcite-option>New IWA</calcite-option>' +
+                '<calcite-option>Test IWA</calcite-option>'
             )
         };
     }
 
+    //control what happens depending on the selected event option
     function eventSelected(selection) {
+        //New Event will prompt user to fill form for a new weather event
         if (selection == "New Event") {
+            //show the weather form in the side panel and add point button to map widgets
             $("#weather-form").css("display", "block");
-            clearForms();
+            $("#point-button").css("display", "flex");
+            //make sure user is getting an empty form to fill
+            clearForms("event");
         }
+        //This is the default weather option
         else if (selection == "Select Weather Event") {
+            //hide all forms and map widgets that may be visible
             $("#weather-form").css("display", "none");
             $("#iwa-form").css("display", "none");
-            clearForms();
+            $("#point-button").css("display", "none");
+            $("#polygon-button").css("display", "none");
+            //make sure all forms are cleared of any information
+            clearForms("event");
         }
+        //This indicates that an existing weather event has been selected
         else {
+            //Enable Step 2. IWA tab
+            $("#iwa-list-item").removeClass("disabled");
+            //hide the point button as it will not be used passed Step 1. Weather Event
+            $("#point-button").css("display", "none");
+            //move to the 2. IWA tab
             $("#iwa-tab").tab("show");
-            $("#iwa-form").css("display", "block")
+            //add a header to the IWA panel indicating the selected weather event
             $("#iwa").prepend(
                 "<p id='event-label'>Weather Event: " + selection + "</p>"
             );
         };
     }
 
-    function clearForms() {
-        $("#weather-form").closest('form').find("input[type=text], textarea").val("");
-        $("#weather-form").closest('form').find("input[type=date], textarea").val("");
-        $("#disaster-type").val("");
-        $("#iwa-form").closest('form').find("input[type=text], textarea").val("");
-        $("#iwa-form").closest('form').find("input[type=date], textarea").val("");
-        $("p").remove("#event-label");
+    function iwaSelected(selection) {
+        if (selection == "New IWA") {
+            $("#iwa-form").css("display", "block");
+            //add the button for the polygon tool
+            $("#polygon-button").css("display", "flex");
+            clearForms("iwa");
+        } else if (selection == "Select Watch Area") {
+            $("#weather-form").css("display", "none");
+            $("#iwa-form").css("display", "none");
+            $("#polygon-button").css("display", "none");
+            clearForms("iwa");
+        } else {
+            $("#report-list-item").removeClass("disabled");
+            $("#report-tab").tab("show");
+            $("#polygon-button").css("display", "none");
+        }
+    };
 
+    function clearForms(form) {
+        if (form == "event") {
+            $("#weather-form").closest('form').find("input[type=text], textarea").val("");
+            $("#weather-form").closest('form').find("input[type=date], textarea").val("");
+            $("#disaster-type").val("");
+            $("p").remove("#event-label");
+        } else if (form == "iwa") {
+            $("#iwa-form").closest('form').find("input[type=text], textarea").val("");
+            $("#iwa-form").closest('form').find("input[type=date], textarea").val("");
+
+        };
     }
 });
